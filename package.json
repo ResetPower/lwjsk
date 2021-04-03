@@ -1,17 +1,22 @@
 {
   "name": "lwjsk",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "Lightweight Javascript Kit for Electron and Single Page Application",
   "main": "out/index.js",
   "scripts": {
     "dev": "webpack serve",
     "test": "jest",
-    "dist": "webpack && tsc"
+    "dist": "webpack && tsc --sourceMap false"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/ResetPower/lwjsk.git"
   },
+  "keywords": [
+    "lwjsk",
+    "front-end",
+    "web"
+  ],
   "author": "ResetPower <resetpower20@gmail.com>",
   "license": "GPL-3.0-or-later",
   "bugs": {

@@ -29,12 +29,13 @@ export class LwjskFragment {
         return Reflect.get(target, key);
       },
       set(target, key, value) {
+        let ret = Reflect.set(target, key, value);
         if (frag.bindings.hasOwnProperty(key)) {
           let binding = frag.bindings[key as string];
           writeAttr(binding.e, binding.attr, value);
         }
         frag.update(key as string);
-        return Reflect.set(target, key, value);
+        return ret;
       },
     });
     this.methods = options.methods ?? {};

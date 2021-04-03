@@ -13,6 +13,9 @@
     <button l-onclick="submit">Submit</button>
     <p>I18n text: <span lt="$v0 mike amy"></span></p>
     <p l-if="*profiles">profiles is empty</p>
+    <br /><br />
+    <p>You have clicked the button for <span lt="count"></span> times!</p>
+    <button l-onclick="increase">Increase</button>
   </body>
   <script src="dist/lwjsk.js"></script>
   <script>
@@ -23,10 +26,14 @@
         items: [{ name: "Item 0" }, { name: "Item 1" }, { name: "Item 2" }],
         mike: "Mike",
         amy: "Amy",
+        count: 0,
       },
       methods: {
         submit() {
           this.update("str");
+        },
+        increase() {
+          this.data.count++;
         },
       },
       i18n: new LwjskI18n({

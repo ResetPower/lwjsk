@@ -5,6 +5,7 @@
     "outDir": "./out",
     "rootDir": "./src",
     "declaration": true,
+    "sourceMap": true,
     "removeComments": true,
     "strict": true,
     "noImplicitAny": true,
