@@ -43,7 +43,11 @@ export class LwjskFragment {
 
   addMapping(key: string, el: HTMLElement) {
     let m = this.mappings[key];
-    m === undefined ? (m = [el]) : m.indexOf(el) === -1 ? m.push(el) : undefined;
+    m === undefined
+      ? (this.mappings[key] = [el])
+      : this.mappings[key].indexOf(el) === -1
+      ? this.mappings[key].push(el)
+      : undefined;
   }
 
   addBinding(key: string, binding: Binding) {
