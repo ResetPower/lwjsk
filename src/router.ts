@@ -33,7 +33,9 @@ export class LwjskRouter {
         father: this.app,
       });
     } else {
-      throw new LwjskError("Lwjsk router cannot load page before LwjskApp initializing");
+      throw new LwjskError(
+        "Lwjsk router cannot find application. Maybe you reloaded the router too early, try to delete code like 'router.reload()'"
+      );
     }
   }
   updateUrl(url: string) {

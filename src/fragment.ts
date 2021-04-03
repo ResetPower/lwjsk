@@ -1,5 +1,4 @@
-import { LwjskApp } from "./app";
-import { LwjskError } from "./error";
+import { LwjskApp, LwjskError } from ".";
 import {
   Binding,
   Expression,
@@ -21,7 +20,7 @@ export class LwjskFragment {
     this.el = options.el;
     this.father = options.father;
     let frag = this;
-    this.data = new Proxy(options.data, {
+    this.data = new Proxy(options.data ?? {}, {
       get(target, key) {
         if (frag.bindings.hasOwnProperty(key)) {
           let binding = frag.bindings[key as string];
@@ -30,30 +29,21 @@ export class LwjskFragment {
         return Reflect.get(target, key);
       },
       set(target, key, value) {
-        let ret = Reflect.set(target, key, value);
         if (frag.bindings.hasOwnProperty(key)) {
           let binding = frag.bindings[key as string];
           writeAttr(binding.e, binding.attr, value);
         }
         frag.update(key as string);
-        return ret;
+        return Reflect.set(target, key, value);
       },
     });
-    if (options.methods !== undefined) {
-      this.methods = options.methods;
-    }
+    this.methods = options.methods ?? {};
     this.render();
   }
 
   addMapping(key: string, el: HTMLElement) {
     let m = this.mappings[key];
-    if (m === undefined) {
-      this.mappings[key] = [el];
-    } else {
-      if (this.mappings[key].indexOf(el) === -1) {
-        this.mappings[key].push(el);
-      }
-    }
+    m === undefined ? (m = [el]) : m.indexOf(el) === -1 ? m.push(el) : undefined;
   }
 
   addBinding(key: string, binding: Binding) {
@@ -182,17 +172,16 @@ export class LwjskFragment {
     }
   }
 
-  render(element: HTMLElement = this.el, temp?: { [key: string]: any }) {
-    let mapping = temp === undefined;
-    let list = element.querySelectorAll("[l-text], [lt], [l-onclick], [l-if], [l-for], [l-bind]");
-    for (let i of list) {
-      this.renderElement(i as HTMLElement, mapping, temp);
+  render(element = this.el, temp?: { [key: string]: any }) {
+    for (let i of element.querySelectorAll(
+      "[l-text], [lt], [l-onclick], [l-if], [l-for], [l-bind]"
+    )) {
+      this.renderElement(i as HTMLElement, temp === undefined, temp);
     }
   }
 
   update(key: string) {
-    let components = this.mappings[key];
-    for (let i of components) {
+    for (let i of this.mappings[key]) {
       this.renderElement(i as HTMLElement);
     }
   }

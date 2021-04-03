@@ -1,7 +1,10 @@
 tsconfig.json
-test.html
+index.html
 .prettierrc.js
 .eslintrc.js
 webpack.config.js
 test/
 src/
+components/
+.vscode/
+.idea/

@@ -1,0 +1,43 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Test</title>
+  </head>
+  <body l-app>
+    <p lt="msg"></p>
+    <p l-if="seen">seen = true</p>
+    <p l-else>seen = false</p>
+    <div l-for="i in items"><span lt="i.name" /></div>
+    <p style="color: red">Value of str: <span lt="str"></span></p>
+    <input l-bind="value on str" />
+    <button l-onclick="submit">Submit</button>
+    <p>I18n text: <span lt="$v0 mike amy"></span></p>
+    <p l-if="*profiles">profiles is empty</p>
+  </body>
+  <script src="dist/lwjsk.js"></script>
+  <script>
+    const app = new LwjskApp({
+      data: {
+        msg: "Hello, World!",
+        seen: false,
+        items: [{ name: "Item 0" }, { name: "Item 1" }, { name: "Item 2" }],
+        mike: "Mike",
+        amy: "Amy",
+      },
+      methods: {
+        submit() {
+          this.update("str");
+        },
+      },
+      i18n: new LwjskI18n({
+        language: "zh-cn",
+        messages: {
+          "zh-cn": {
+            v0: "My name is {0}, the second arg is {1}",
+          },
+        },
+      }),
+      // router: router,
+    });
+  </script>
+</html>

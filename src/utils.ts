@@ -1,9 +1,8 @@
-import { LwjskApp } from ".";
-import { LwjskI18n } from "./i18n";
-import { LwjskRouter } from "./router";
+import { LwjskApp, LwjskI18n, LwjskRouter } from ".";
 
 export function isEmpty(e: any): boolean {
-  return e === undefined || e === null || typeof e === "undefined";
+  if (!e) return true;
+  return e.hasOwnProperty("length") ? !(e.length && e.length !== 0) : false;
 }
 
 export function getObjectData(obj: any, path: string[]): string {
@@ -47,14 +46,14 @@ export interface Expression {
 }
 
 export interface LwjskFragmentOptions {
-  data: { [key: string]: any };
+  data?: { [key: string]: any };
   methods?: { [key: string]: Function };
   el: HTMLElement;
   father: LwjskApp;
 }
 
 export interface LwjskAppOptions {
-  data: { [key: string]: any };
+  data?: { [key: string]: any };
   methods?: { [key: string]: Function };
   i18n?: LwjskI18n;
   router?: LwjskRouter;
@@ -73,6 +72,5 @@ export interface Route {
 }
 
 export interface LwjskRouterOptions {
-  mode?: string; // unusable now
   routes: Route[];
 }

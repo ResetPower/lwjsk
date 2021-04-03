@@ -1,4 +1,4 @@
-import { isEmpty, getObjectData } from "../out/utils";
+import { isEmpty, getObjectData } from "../src/utils";
 
 test("isEmpty", () => {
   expect(isEmpty(undefined)).toBe(true);

@@ -1,7 +1,4 @@
-import { LwjskFragment } from ".";
-import { LwjskError } from "./error";
-import { LwjskI18n } from "./i18n";
-import { LwjskRouter } from "./router";
+import { LwjskFragment, LwjskError, LwjskI18n, LwjskRouter } from ".";
 import { LwjskAppOptions } from "./utils";
 
 export class LwjskApp {
