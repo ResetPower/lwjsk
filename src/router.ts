@@ -5,6 +5,7 @@ export class LwjskRouter {
   path: string = "/";
   el: HTMLElement;
   routes: Route[] = [];
+  onreload: (route: Route) => void = () => {};
   app?: LwjskApp;
   constructor(options: LwjskRouterOptions) {
     let hash = removePrefix(location.hash, "#");
@@ -37,6 +38,7 @@ export class LwjskRouter {
         "Lwjsk router cannot find application. Maybe you reloaded the router too early, try to delete code like 'router.reload()'"
       );
     }
+    this.onreload(route);
   }
   updateUrl(url: string) {
     location.hash = url;
