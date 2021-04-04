@@ -1,4 +1,4 @@
-import { LwjskApp, LwjskI18n, LwjskRouter } from ".";
+import { LwjskApp, LwjskFragment, LwjskI18n, LwjskRouter } from ".";
 
 export function isEmpty(e: any): boolean {
   if (!e) return true;
@@ -73,4 +73,5 @@ export interface Route {
 
 export interface LwjskRouterOptions {
   routes: Route[];
+  onreload?: (route: Route) => void;
 }

@@ -12,6 +12,7 @@ export class LwjskRouter {
     this.path = hash.startsWith("/") ? hash : "/";
     this.el = document.querySelector("router-view") as HTMLElement;
     this.routes = options.routes;
+    this.onreload = options.onreload ?? (() => {});
   }
   findRoute(path: string): Route | null {
     for (let i of this.routes) {
@@ -38,7 +39,7 @@ export class LwjskRouter {
         "Lwjsk router cannot find application. Maybe you reloaded the router too early, try to delete code like 'router.reload()'"
       );
     }
-    this.onreload(route);
+    this.onreload.apply(this.app, [route]);
   }
   updateUrl(url: string) {
     location.hash = url;
