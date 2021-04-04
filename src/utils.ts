@@ -48,6 +48,7 @@ export interface Expression {
 export interface LwjskFragmentOptions {
   data?: { [key: string]: any };
   methods?: { [key: string]: Function };
+  mounted?: Function;
   el: HTMLElement;
   father: LwjskApp;
 }
@@ -55,6 +56,7 @@ export interface LwjskFragmentOptions {
 export interface LwjskAppOptions {
   data?: { [key: string]: any };
   methods?: { [key: string]: Function };
+  mounted?: Function;
   i18n?: LwjskI18n;
   router?: LwjskRouter;
 }

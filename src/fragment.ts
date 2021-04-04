@@ -40,6 +40,7 @@ export class LwjskFragment {
     });
     this.methods = options.methods ?? {};
     this.render();
+    options.mounted === undefined ? undefined : options.mounted();
   }
 
   addMapping(key: string, el: HTMLElement) {
@@ -189,8 +190,11 @@ export class LwjskFragment {
   }
 
   update(key: string) {
-    for (let i of this.mappings[key]) {
-      this.renderElement(i as HTMLElement);
+    let list = this.mappings[key];
+    if (!isEmpty(list)) {
+      for (let i of list) {
+        this.renderElement(i as HTMLElement);
+      }
     }
   }
 }

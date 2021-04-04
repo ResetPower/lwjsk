@@ -25,6 +25,7 @@ export class LwjskApp {
     this.frag = new LwjskFragment({
       data: options.data,
       methods: options.methods,
+      mounted: options.mounted,
       el: this.el,
       father: this,
     });
