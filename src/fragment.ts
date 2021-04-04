@@ -98,7 +98,8 @@ export class LwjskFragment {
     if (lo !== null) {
       // l-onclick (no data mapping)
       e.onclick = () => this.methods[lo!].apply(this, []);
-    } else if (lf !== null) {
+    }
+    if (lf !== null) {
       // l-for (with data mapping)
       let k = lf!;
       let split = k.split(" in ");
@@ -138,7 +139,8 @@ export class LwjskFragment {
       if (list !== null && mapping === true) {
         this.addMapping(list, e);
       }
-    } else if (lb !== null) {
+    }
+    if (lb !== null) {
       // l-bind
       let split = lb.split(" on ");
       let attr = split[0];
@@ -151,7 +153,8 @@ export class LwjskFragment {
         e: e,
         attr: attr,
       });
-    } else {
+    }
+    if (lt !== null || li !== null) {
       // l-text & l-if (with data mapping)
       let k: string = "";
       let shouldMap = false;

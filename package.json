@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "webpack serve",
     "test": "jest",
-    "dist": "webpack && tsc --sourceMap false"
+    "dist": "webpack --config webpack.config.prod.js && tsc --sourceMap false"
   },
   "repository": {
     "type": "git",
