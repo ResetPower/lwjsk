@@ -173,8 +173,11 @@ export class LwjskFragment {
         shouldMap = exp.shouldMap;
         let rs = exp.value as boolean;
         e.hidden = !rs;
-        let next = e.nextElementSibling as HTMLElement; // resolve l-else
-        next.hidden = next.getAttribute("l-else") !== null && rs;
+        let next = e.nextElementSibling; // resolve l-else
+        if (next !== null) {
+          let n = next as HTMLElement;
+          n.hidden = n.getAttribute("l-else") !== null && rs;
+        }
         k = exp.key;
       }
       // add to mapping
