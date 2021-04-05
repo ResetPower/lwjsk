@@ -1,6 +1,6 @@
 {
   "name": "lwjsk",
-  "version": "0.0.10",
+  "version": "0.0.12",
   "description": "Lightweight Javascript Kit for Electron and Single Page Application",
   "main": "out/index.js",
   "scripts": {

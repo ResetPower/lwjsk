@@ -47,16 +47,16 @@ export interface Expression {
 
 export interface LwjskFragmentOptions {
   data?: { [key: string]: any };
-  methods?: { [key: string]: Function };
-  mounted?: Function;
+  methods?: { [key: string]: (this: LwjskFragment) => void };
+  mounted?: (this: LwjskFragment) => void;
   el: HTMLElement;
   father: LwjskApp;
 }
 
 export interface LwjskAppOptions {
   data?: { [key: string]: any };
-  methods?: { [key: string]: Function };
-  mounted?: Function;
+  methods?: { [key: string]: (this: LwjskFragment) => void };
+  mounted?: (this: LwjskFragment) => void;
   i18n?: LwjskI18n;
   router?: LwjskRouter;
 }
@@ -70,8 +70,8 @@ export interface Route {
   path: string;
   template: string;
   data?: { [key: string]: any };
-  methods?: { [key: string]: Function };
-  mounted?: Function;
+  methods?: { [key: string]: (this: LwjskFragment) => void };
+  mounted?: (this: LwjskFragment) => void;
 }
 
 export interface LwjskRouterOptions {

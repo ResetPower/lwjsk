@@ -40,7 +40,7 @@ export class LwjskFragment {
     });
     this.methods = options.methods ?? {};
     this.render();
-    (options.mounted ?? (() => {}))();
+    (options.mounted ?? (() => {})).apply(this);
   }
 
   addMapping(key: string, el: HTMLElement) {
