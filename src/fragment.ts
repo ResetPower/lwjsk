@@ -40,7 +40,7 @@ export class LwjskFragment {
     });
     this.methods = options.methods ?? {};
     this.render();
-    options.mounted === undefined ? undefined : options.mounted();
+    (options.mounted ?? (() => {}))();
   }
 
   addMapping(key: string, el: HTMLElement) {
@@ -62,6 +62,9 @@ export class LwjskFragment {
       let e = this.expression(exp.substr(1), temp);
       e.value = !(e.value as boolean);
       return e;
+    } else if (exp.startsWith("%")) {
+      // parse function
+      return { value: this.methods[exp.substr(1)].apply(this, []), shouldMap: false, key: "" };
     } else if (exp.startsWith("*")) {
       // parse null
       let e = this.expression(exp.substr(1), temp);
@@ -186,6 +189,15 @@ export class LwjskFragment {
       "[l-text], [lt], [l-onclick], [l-if], [l-for], [l-bind]"
     )) {
       this.renderElement(i as HTMLElement, temp === undefined, temp);
+    }
+  }
+
+  updateComponent(selector: string) {
+    let list = this.el.querySelectorAll(selector);
+    if (!isEmpty(list)) {
+      for (let i of list) {
+        this.renderElement(i as HTMLElement);
+      }
     }
   }
 

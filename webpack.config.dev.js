@@ -19,6 +19,5 @@ module.exports = {
     path: path.resolve(__dirname, "./dist"),
     filename: "lwjsk.js",
     libraryTarget: "umd",
-    globalObject: "this",
   },
 };

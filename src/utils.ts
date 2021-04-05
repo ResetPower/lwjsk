@@ -71,6 +71,7 @@ export interface Route {
   template: string;
   data?: { [key: string]: any };
   methods?: { [key: string]: Function };
+  mounted?: Function;
 }
 
 export interface LwjskRouterOptions {

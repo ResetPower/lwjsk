@@ -13,9 +13,9 @@
     <button l-onclick="submit">Submit</button>
     <p>I18n text: <span lt="$v0 mike amy"></span></p>
     <p l-if="*profiles">profiles is empty</p>
-    <br /><br />
-    <p>You have clicked the button for <span lt="count"></span> times!</p>
-    <button l-onclick="increase">Increase</button>
+    <p l-if="%getValueOfTrue">HW</p>
+    <h2>Router View:</h2>
+    <router-view></router-view>
   </body>
   <script src="dist/lwjsk.js"></script>
   <script>
@@ -35,6 +35,9 @@
         increase() {
           this.data.count++;
         },
+        getValueOfTrue() {
+          return true;
+        },
       },
       i18n: new LwjskI18n({
         language: "zh-cn",
@@ -44,7 +47,29 @@
           },
         },
       }),
-      // router: router,
+      mounted() {
+        console.log("mounted");
+      },
+      router: new LwjskRouter({
+        routes: [
+          {
+            path: "/",
+            template:
+              '<p>You have clicked the button for <span lt="count"></span> times!</p><button l-onclick="increase">Increase</button>',
+            data: {
+              count: 0,
+            },
+            mounted() {
+              console.log("MOUNTED");
+            },
+            methods: {
+              increase() {
+                this.data.count++;
+              },
+            },
+          },
+        ],
+      }),
     });
 
     window.app = app;

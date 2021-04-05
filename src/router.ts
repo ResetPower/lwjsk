@@ -33,6 +33,7 @@ export class LwjskRouter {
         data: route.data === undefined ? {} : route.data,
         methods: route.methods === undefined ? {} : route.methods,
         father: this.app,
+        mounted: route.mounted,
       });
     } else {
       throw new LwjskError(
